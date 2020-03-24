@@ -13,6 +13,11 @@ source("functions/functions.R")
 #set working directory to save location
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
+#make data directory
+if (!dir.exists('data')) {
+  dir.create('data')
+}
+
 #create the URL where the dataset is stored with automatic updates every day
 url <- paste("https://www.ecdc.europa.eu/sites/default/files/documents/COVID-19-geographic-disbtribution-worldwide-",format(Sys.time(), "%Y-%m-%d"), ".xlsx", sep = "")
 
@@ -38,4 +43,4 @@ countries = c("Netherlands","Germany","Belgium")
 plot_countries(countrylist = countries, dataset = data, Deaths_or_Cases = "Cases")
 
 #remove data
-file.remove("data/worldwide")
+file.remove("data/wordwide.xlsx")
